@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pak-Austria Fachhochschule | Haripur</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-dark: #0a2a44;     /* deep navy */
+      --primary: #1e4a6f;           /* rich blue */
+      --accent: #c49a1f;            /* aged gold */
+      --accent-light: #e0b94a;
+      --light-bg: #f4f7fb;
+      --white: #ffffff;
+      --gray-100: #f0f4f8;
+      --gray-600: #4a5568;
+      --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 30px 40px -15px rgba(0, 20, 30, 0.3);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--light-bg);
+      color: #1e293b;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* fade-in animation for sections */
+    section {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ----- HEADER & ANIMATED MENU ----- */
+    .site-header {
+      background: rgba(10, 42, 68, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo img {
+      height: 55px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .main-menu ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .main-menu a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #f0f4fa;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .main-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .main-menu a:hover {
+      color: var(--accent-light);
+    }
+    .main-menu a:hover::after {
+      width: 70%;
+    }
+
+    /* ----- HERO SECTION (with real campus image) ----- */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #153e5a 100%);
+      color: white;
+      padding: 3rem 0 4rem;
+      border-bottom-left-radius: 60px;
+      border-bottom-right-radius: 60px;
+    }
+
+    .hero-flex {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+    }
+
+    .hero-text h3 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(to right, #ffffff, #f5d742);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+      color: #deeaf5;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+    }
+
+    .hero-image:hover {
+      transform: scale(1.02) rotate(0.8deg);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* section headings */
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      border-left: 8px solid var(--accent);
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ----- FACULTY CARDS ----- */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+    }
+
+    .fac-card {
+      background: var(--white);
+      padding: 2rem 1.5rem;
+      border-radius: 32px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.02);
+      text-align: center;
+    }
+
+    .fac-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-light);
+    }
+
+    .fac-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+
+    .fac-card:hover i {
+      transform: scale(1.1) rotate(2deg);
+      color: var(--primary);
+    }
+
+    .fac-card h3 {
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+    }
+
+    /* stats */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      background: var(--primary-dark);
+      border-radius: 50px;
+      padding: 2.5rem 1.5rem;
+      margin: 2.5rem 0;
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent-light);
+    }
+
+    /* ----- SLIDESHOW (real images) ----- */
+    .slideshow-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 2rem auto;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .slides-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      aspect-ratio: 16/9;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10, 42, 68, 0.6);
+      backdrop-filter: blur(6px);
+      color: white;
+      border: none;
+      width: 54px;
+      height: 54px;
+      border-radius: 40px;
+      font-size: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .slide-btn:hover {
+      background: var(--primary-dark);
+      width: 64px;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .dot-container {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 1.2rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 20px;
+      background: #b0c4de;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      background: var(--accent);
+      width: 36px;
+    }
+
+    /* ----- ACCORDION (smooth) ----- */
+    .accordion-item {
+      background: white;
+      border-radius: 28px;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #dde7f0;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.4rem 2rem;
+      font-size: 1.3rem;
+      font-weight: 650;
+      color: var(--primary-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: #f0f7ff;
+    }
+
+    .accordion-header span {
+      font-size: 2rem;
+      color: var(--accent);
+      transition: transform 0.4s ease;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+      background: #f9fcff;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+    }
+
+    .accordion-content p {
+      padding: 0 2rem 1.8rem 2rem;
+      color: #2c3e4e;
+    }
+
+    .accordion-item.active .accordion-header span {
+      transform: rotate(45deg);
+    }
+
+    /* ----- CONTACT FORM (animated validation) ----- */
+    .contact-form {
+      background: white;
+      border-radius: 48px;
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-row {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 2px solid #dde7f0;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    textarea {
+      border-radius: 30px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 5px rgba(196, 154, 31, 0.15);
+    }
+
+    .error-msg {
+      color: #b22222;
+      font-size: 0.85rem;
+      margin: 0.5rem 0 0 1.2rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      min-height: 1.2rem;
+    }
+
+    .error-msg.visible {
+      opacity: 1;
+    }
+
+    input.invalid, textarea.invalid {
+      border-color: #b22222;
+      background-color: #fff0f0;
+    }
+
+    .btn-submit {
+      background: var(--primary-dark);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 1.1rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 16px -6px #0a2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn-submit:hover {
+      background: #1e4a6f;
+      transform: scale(1.02);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .email-note {
+      background: #fff8e7;
+      border-radius: 28px;
+      padding: 1.2rem 1.8rem;
+      margin-top: 2rem;
+      border-left: 8px solid var(--accent);
+      font-size: 0.95rem;
+    }
+
+    /* footer */
+    .footer {
+      background: var(--primary-dark);
+      color: #bdd3e8;
+      text-align: center;
+      padding: 2.5rem;
+      margin-top: 4rem;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+    }
+
+    .footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .main-menu ul { gap: 1rem; }
+      h2 { font-size: 2rem; }
+      .hero-text h3 { font-size: 2rem; }
+      .contact-form { padding: 2rem 1.5rem; }
+      .stats { flex-direction: column; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- header with logo (real) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <!-- official logo from qualityobe / paf-iast -->
+        <img src="https://qualityobe.com/images/clients/paf2-min.png" alt="Pak-Austria Fachhochschule Logo" onerror="this.src='https://paf-iast.edu.pk/wp-content/uploads/2022/07/logo.png'; this.onerror=null;">
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#academics">Academics</a></li>
+          <li><a href="#media">Media</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- home / hero with real campus image DSC_0089 -->
+    <section id="home" style="animation-delay:0.1s;">
+      <div class="hero">
+        <div class="container hero-flex">
+          <div class="hero-text">
+            <h3>Institute of Applied Sciences & Technology</h3>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--accent);"></i> Mang, Haripur • First Austrian‑style university in Pakistan</p>
+            <p>Founded 2018 · Inaugurated 2020 · 5000+ students · 15+ int’l partners</p>
+            <a href="#about" style="display:inline-block; background:var(--accent); color:var(--primary-dark); padding:0.8rem 2rem; border-radius:40px; font-weight:600; margin-top:1rem; text-decoration:none; transition:var(--transition);">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="hero-image">
+            <!-- official campus image from paf-iast.edu.pk -->
+            <img src="https://paf-iast.edu.pk/wp-content/uploads/2022/07/DSC_0089-scaled.jpg" alt="PAF-IAST Green Campus" onerror="this.src='https://picsum.photos/id/1043/700/500';">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about accordion (with real event photo inside) -->
+    <section id="about" style="animation-delay:0.2s;">
+      <div class="container">
+        <h2>📖 about PAF‑IAST</h2>
+        <div class="accordion-item">
+          <button class="accordion-header"><span>+</span> history & collaboration</button>
+          <div class="accordion-content"><p>Established in 2018 through a joint venture between the Govt of Khyber Pakhtunkhwa, Austrian universities (FH Joanneum, FH Salzburg, FH Wiener Neustadt) and Chinese partners. Inaugurated by PM Imran Khan on 17 September 2020. The first Fachhochschule in Pakistan.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header"><span>+</span> academic model</button>
+          <div class="accordion-content"><p>Applied sciences focus: 70% practical, 30% theory. Strong industry linkages, semester‑long projects. Offers bachelor, master and PhD programs in engineering, life sciences, computing and management.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header"><span>+</span> first convocation 2025</button>
+          <div class="accordion-content"><p>On 31 May 2025, at Jinnah Convention Centre, 484 graduates received degrees. 13 gold medals awarded. 21 international students from Sri Lanka, Afghanistan and China graduated. Rector Prof. Mohammad Mujahid conferred degrees.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- academics / faculties -->
+    <section id="academics" style="animation-delay:0.3s;">
+      <div class="container">
+        <h2>🎓 faculties & centers</h2>
+        <div class="faculty-grid">
+          <div class="fac-card"><i class="fas fa-laptop-code"></i><h3>Computing</h3><p>AI, data science, cyber security</p></div>
+          <div class="fac-card"><i class="fas fa-cogs"></i><h3>Engineering</h3><p>Mechanical, railway, mineral</p></div>
+          <div class="fac-card"><i class="fas fa-dna"></i><h3>Life Sciences</h3><p>Biomedical, food tech</p></div>
+          <div class="fac-card"><i class="fas fa-chart-line"></i><h3>Management</h3><p>Business, economics, tourism</p></div>
+        </div>
+        <div class="stats">
+          <div class="stat-item"><span class="stat-number">5000+</span><br>students</div>
+          <div class="stat-item"><span class="stat-number">56</span><br>international scholars</div>
+          <div class="stat-item"><span class="stat-number">8</span><br>partner countries</div>
+          <div class="stat-item"><span class="stat-number">97%</span><br>graduate employability</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- media / slideshow with real images from search results -->
+    <section id="media" style="animation-delay:0.4s;">
+      <div class="container">
+        <h2>📸 campus & events</h2>
+        <div class="slideshow-container" id="slideshow">
+          <div class="slides-wrapper" id="slidesWrapper">
+            <!-- image 1: inauguration by PM (brandsynario) -->
+            <div class="slide"><img src="https://www.brandsynario.com/wp-content/uploads/2020/09/pak-austria-university-haripur-560x420.jpg" alt="PM Imran Khan inauguration" onerror="this.src='https://picsum.photos/id/1015/1200/600';"></div>
+            <!-- image 2: students / campus (wslconsultants) -->
+            <div class="slide"><img src="https://wslconsultants.com/wp-content/uploads/2022/09/Pak-Austria-University-Haripur-Student-1024x1024.jpg" alt="Students at PAF-IAST" onerror="this.src='https://picsum.photos/id/1043/1200/600';"></div>
+            <!-- image 3: another campus view (dnd.com.pk) -->
+            <div class="slide"><img src="https://dnd.com.pk/wp-content/uploads/2020/09/IMG-20200917-WA0013-696x522.jpg" alt="University building" onerror="this.src='https://picsum.photos/id/106/1200/600';"></div>
+            <!-- image 4: aerial / green campus (official) -->
+            <div class="slide"><img src="https://paf-iast.edu.pk/wp-content/uploads/2022/07/DSC_0089-scaled.jpg" alt="Green Campus aerial" onerror="this.src='https://picsum.photos/id/20/1200/600';"></div>
+          </div>
+          <button class="slide-btn prev" id="prevSlide">‹</button>
+          <button class="slide-btn next" id="nextSlide">›</button>
+        </div>
+        <div class="dot-container" id="dotContainer"></div>
+        <p style="text-align:center; margin-top:0.5rem; color:var(--primary-dark);">📍 Images: official FB / news sources (credit below)</p>
+      </div>
+    </section>
+
+    <!-- contact form with animated validation & email -->
+    <section id="contact" style="animation-delay:0.5s;">
+      <div class="container">
+        <h2>📧 contact us</h2>
+        <div class="contact-form">
+          <form id="contactForm" action="https://formspree.io/f/your-email" method="POST">
+            <input type="text" name="_gotcha" style="display:none">
+            <div class="form-row">
+              <label for="name">full name *</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Ayesha Khan">
+              <div class="error-msg" id="nameError"></div>
+            </div>
+            <div class="form-row">
+              <label for="email">email *</label>
+              <input type="email" id="email" name="email" placeholder="ayesha@example.com">
+              <div class="error-msg" id="emailError"></div>
+            </div>
+            <div class="form-row">
+              <label for="message">message *</label>
+              <textarea id="message" name="message" rows="4" placeholder="I would like to inquire about admissions..."></textarea>
+              <div class="error-msg" id="msgError"></div>
+            </div>
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> send to owner</button>
+            <div class="email-note">
+              <i class="fas fa-envelope" style="color: var(--accent);"></i> 
+              After validation, the form will send an email via Formspree. Replace the endpoint with your own.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Pak-Austria Fachhochschule, Haripur (student project)</p>
+    <p style="margin-top:0.5rem;">Images courtesy: PAF-IAST official website, Brandsynario, WSL Consultants, DND News. <a href="#home">back to top ↑</a></p>
+  </footer>
+
+  <!-- JavaScript: slideshow, accordion, form validation -->
+  <script>
+    (function() {
+      // ---------- slideshow with autoplay ----------
+      const wrapper = document.getElementById('slidesWrapper');
+      const slides = document.querySelectorAll('.slide');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      const dotContainer = document.getElementById('dotContainer');
+
+      if (wrapper && slides.length) {
+        let current = 0;
+        const total = slides.length;
+        let autoInterval;
+
+        // create dots
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('button');
+          dot.classList.add('dot');
+          dot.dataset.index = i;
+          dot.addEventListener('click', () => goToSlide(i));
+          dotContainer.appendChild(dot);
+        }
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(index) {
+          if (index < 0) index = total - 1;
+          if (index >= total) index = 0;
+          current = index;
+          wrapper.style.transform = `translateX(-${current * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        prevBtn.addEventListener('click', () => { goToSlide(current - 1); resetTimer(); });
+        nextBtn.addEventListener('click', () => { goToSlide(current + 1); resetTimer(); });
+
+        function startAuto() { autoInterval = setInterval(() => goToSlide(current + 1), 4000); }
+        function resetTimer() { clearInterval(autoInterval); startAuto(); }
+
+        const slideContainer = document.querySelector('.slideshow-container');
+        slideContainer.addEventListener('mouseenter', () => clearInterval(autoInterval));
+        slideContainer.addEventListener('mouseleave', () => startAuto());
+
+        goToSlide(0);
+        startAuto();
+      }
+
+      // ---------- accordion smooth ----------
+      const accItems = document.querySelectorAll('.accordion-item');
+      accItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        content.style.maxHeight = '0';
+        header.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isActive = item.classList.contains('active');
+          // close others
+          accItems.forEach(i => {
+            if (i !== item && i.classList.contains('active')) {
+              i.classList.remove('active');
+              i.querySelector('.accordion-content').style.maxHeight = '0';
+            }
+          });
+          if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 30 + 'px';
+          } else {
+            item.classList.remove('active');
+            content.style.maxHeight = '0';
+          }
+        });
+      });
+
+      // ---------- contact form validation with animation ----------
+      const form = document.getElementById('contactForm');
+      const nameInp = document.getElementById('name');
+      const emailInp = document.getElementById('email');
+      const msgInp = document.getElementById('message');
+      const nameErr = document.getElementById('nameError');
+      const emailErr = document.getElementById('emailError');
+      const msgErr = document.getElementById('msgError');
+
+      function setError(field, errEl, msg) {
+        field.classList.add('invalid');
+        errEl.textContent = msg;
+        errEl.classList.add('visible');
+      }
+      function clearError(field, errEl) {
+        field.classList.remove('invalid');
+        errEl.textContent = '';
+        errEl.classList.remove('visible');
+      }
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();   // prevent actual submit for demo (replace action)
+        let valid = true;
+
+        if (!nameInp.value.trim()) {
+          setError(nameInp, nameErr, 'Name is required');
+          valid = false;
+        } else {
+          clearError(nameInp, nameErr);
+        }
+
+        const emailVal = emailInp.value.trim();
+        if (!emailVal) {
+          setError(emailInp, emailErr, 'Email address is required');
+          valid = false;
+        } else if (!isValidEmail(emailVal)) {
+          setError(emailInp, emailErr, 'Enter a valid email (e.g., name@domain.com)');
+          valid = false;
+        } else {
+          clearError(emailInp, emailErr);
+        }
+
+        if (!msgInp.value.trim()) {
+          setError(msgInp, msgErr, 'Message cannot be blank');
+          valid = false;
+        } else if (msgInp.value.trim().length < 10) {
+          setError(msgInp, msgErr, 'Message must be at least 10 characters');
+          valid = false;
+        } else {
+          clearError(msgInp, msgErr);
+        }
+
+        if (valid) {
+          alert('✅ Form is valid! (demo – to actually send, replace Formspree endpoint)');
+          // form.submit(); // uncomment when you have a real endpoint
+        }
+      });
+
+      // real-time clearing
+      nameInp.addEventListener('input', () => { if (nameInp.value.trim()) clearError(nameInp, nameErr); });
+      emailInp.addEventListener('input', () => { if (isValidEmail(emailInp.value.trim())) clearError(emailInp, emailErr); });
+      msgInp.addEventListener('input', () => { if (msgInp.value.trim().length >= 10) clearError(msgInp, msgErr); });
+    })();
+  </script>
+</body>
+</html>
